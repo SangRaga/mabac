@@ -66,7 +66,7 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('kriteria.index') }}">
+                <a class="nav-link" href="{{ route('pilihan.index') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Data Kriteria</span></a>
             </li>
@@ -78,11 +78,19 @@
                     <span>Data Sub Kriteria</span></a>
             </li>
 
+
              <!-- Nav Item - Charts -->
              <li class="nav-item">
                 <a class="nav-link" href="{{ route('alternatif.index') }}">
                     <i class="fas fa-fw fa-fax"></i>
                     <span>Data Alternatif</span></a>
+            </li>
+
+             <!-- Nav Item - Tables -->
+             <li class="nav-item">
+                <a class="nav-link" href="{{ route('matrix.index') }}">
+                    <i class="fas fa-fw fa-calendar"></i>
+                    <span>Matrix Penilaian</span></a>
             </li>
 
             {{-- <!-- Nav Item - Tables -->
@@ -164,7 +172,7 @@
                     </button>
 
                     <!-- Topbar Search -->
-                    <form
+                    {{-- <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
@@ -175,7 +183,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                    </form> --}}
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">

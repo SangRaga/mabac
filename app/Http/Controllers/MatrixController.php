@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\alternatif;
+use App\Models\pilihan;
 use Illuminate\Http\Request;
 
-class KriteriaController extends Controller
+class MatrixController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('admin.kriteria.index');
+        $kriteria = pilihan::all();
+        $alternatif = alternatif::all();
+        return view('admin.matrix.index', compact('kriteria', 'alternatif'));
     }
 
     /**
@@ -19,7 +23,8 @@ class KriteriaController extends Controller
      */
     public function create()
     {
-        //
+        $kriteria = pilihan::all();
+        return view('admin.matrix.tambah', compact('kriteria'));
     }
 
     /**
@@ -60,5 +65,19 @@ class KriteriaController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function simpanMatrix(Request $request)
+    {
+        $request->validate([
+            'data_kriteria*' => 'required|numeric',
+        ], [
+            'data_kriteria.required*' => 'Data tidak boleh kosong',
+            'data_kriteria.numeric' => 'Data hrus berupa angka'
+        ]);
+
+        // Proses penyimpanan data ke dalam database
+        // ...
+
+        return redirect()->back()->with('success', 'Data berhasil disimpan.');
     }
 }

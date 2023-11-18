@@ -18,20 +18,18 @@
         </div>
         <div class="card-body">
             <div class="">
-                <form action="{{ url('alternatif') }}" method="post" enctype="multipart/form-data">
+                <form action="{{ url('matrix') }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <div class="form-row">
+                        @foreach ($kriteria as $item)
                         <div class="form-group col-md-6">
-                            <label for="kode_alternatif">Kode</label>
-                            <input type="text" class="form-control" id="kode_alternatif" placeholder="" name="kode_alternatif" value="{{ Session::get('kode_alternatif') }}">
+                            <label for="kode_alternatif">{{ $item->kode_kriteria }}</label>
+                            <input type="text" class="form-control" id="kode_alternatif_{{ $item->kode_kriteria }}" placeholder="" name="data_kriteria[{{ $item->kode_kriteria }}]" value="{{ old('data_kriteria.' . $item->kode_kriteria) }}">
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="nama_alternatif">Nama alternatif</label>
-                            <input type="text" class="form-control" id="nama_alternatif" placeholder="" name="nama_alternatif" value="{{ Session::get('nama_alternatif') }}">
-                        </div>
+                        @endforeach
                     </div>
                     <button type="submit" class="btn btn-primary">Tambah</button>
-                    <a href="{{ url('alternatif') }}" class="btn btn-secondary">Kembali</a>
+                    <a href="{{ url('matrix') }}" class="btn btn-secondary">Kembali</a>
                 </form>
             </div>
         </div>
@@ -39,3 +37,4 @@
 </div>
     
 @endsection
+  

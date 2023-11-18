@@ -14,7 +14,7 @@
 
         <!-- Earnings (Monthly) Card Example -->
         <div class="col-xl-4 col-md-6 mb-3">
-            <a class="nav-link" href="{{ route('kriteria.index') }}">
+            <a class="nav-link" href="{{ route('pilihan.index') }}">
             <div class="card border-left-primary shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
@@ -61,6 +61,26 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Data Alternatif</div>
+                            {{-- <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div> --}}
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-fax fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-4 col-md-6 mb-3">
+            <a class="nav-link" href="{{ route('matrix.index') }}">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                Data Matrix</div>
                             {{-- <div class="h5 mb-0 font-weight-bold text-gray-800">$40,000</div> --}}
                         </div>
                         <div class="col-auto">

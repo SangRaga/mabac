@@ -18,17 +18,17 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th class="bg-primary text-white">No</th>
-                            <th class="bg-primary text-white">Alternatif</th>
-                            <th class="bg-primary text-white">C1</th>
-                            <th class="bg-primary text-white">C2</th>
-                            <th class="bg-primary text-white">C3</th>
-                            <th class="bg-primary text-white">C4</th>
-                            <th class="bg-primary text-white">C5</th>
+                            <th class="bg-primary text-white" >No</th>
+                            <th class="bg-primary text-white" >Alternatif</th>
+                            <th class="bg-primary text-white" >C1</th>
+                            <th class="bg-primary text-white" >C2</th>
+                            <th class="bg-primary text-white" >C3</th>
+                            <th class="bg-primary text-white" >C4</th>
+                            <th class="bg-primary text-white" >C5</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
+                        <tr>    
                             <td>1</td>
                             <td>Agoda</td>
                             <td>2</td>
