@@ -23,16 +23,17 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.dashboard');
-Route::resource('kriteria', KriteriaController::class);
+// Route::resource('kriteria', KriteriaController::class);
 Route::resource('pilihan', PilihanController::class);
 Route::resource('subkriteria', SubkriteriaController::class);
 Route::resource('matrix', MatrixController::class);
 Route::resource('alternatif', AlternatifController::class);
 Route::resource('perhitungan', PerhitunganController::class);
+Route::get('admin', [PerhitunganController::class, 'adminView'])->name('perhitungan');
+Route::get('admin/hasilAkhir', [PerhitunganController::class, 'adminHasil'])->name('hasilAkhir');
 Route::resource('hasilakhir', HasilakhirController::class);

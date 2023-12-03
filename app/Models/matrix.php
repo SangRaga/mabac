@@ -8,12 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class matrix extends Model
 {
     use HasFactory;
-    public function kode()
-    {
-        return $this->hasOne(pilihan::class);
-    }
+
+    protected $table = 'matrices';
+
+    protected $fillable = ['id_alternatif', 'id_kriteria', 'C'];
+
+    // public function kode()
+    // {
+    //     return $this->hasOne(pilihan::class);
+    // }
+    // public function alternatif()
+    // {
+    //     return $this->hasOne(alternatif::class);
+    // }
     public function alternatif()
     {
-        return $this->hasOne(alternatif::class);
+        return $this->belongsTo(alternatif::class, 'id_alternatif', 'id');
+    }
+    public function pilihan()
+    {
+        return $this->belongsTo(pilihan::class, 'id_kriteria', 'id');
     }
 }

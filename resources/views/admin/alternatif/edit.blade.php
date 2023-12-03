@@ -23,7 +23,7 @@
                     @method('PUT')
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="kode_alternatif">kode_alternatif</label>
+                            <label for="kode_alternatif">kode alternatif</label>
                             <div class="col-sm-10">
                                 {{ $data_alternatif->kode_alternatif }}
                             </div>

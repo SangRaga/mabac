@@ -13,13 +13,22 @@ class pilihan extends Model
         'nama_kriteria',
         'bobot_kriteria',
         'jenis_kriteria',
+        'kode_kriteria',
+        'kode_alternatif', // Make sure this matches your table column name
+        'nilai',
     ];
+    
     protected $table = 'pilihan';
     // protected $primaryKey = 'kode_kriteria';
-    public function namasub (){
-         return $this->belongsTo(subkriteria::class);
+//     public function namasub (){
+//          return $this->belongsTo(subkriteria::class);
+//     }
+//     public function kode (){
+//         return $this->belongsTo(matrix::class);
+//    }
+
+    public function matrix(){
+        return $this->hasMany(matrix::class, 'id_kriteria', 'id');
     }
-    public function kode (){
-        return $this->belongsTo(matrix::class);
-   }
+   
 }

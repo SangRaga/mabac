@@ -13,6 +13,12 @@ return new class extends Migration
     {
         Schema::create('matrices', function (Blueprint $table) {
             $table->id();
+            $table->foreignID('id_alternatif')->references('id')->on('alternatif');
+            $table->foreignID('id_kriteria')->references('id')->on('pilihan');
+            $table->decimal('C');
+            // $table->timestamp();
+            // $table->unsignedBigInteger('nilai');
+            // $table->foreign('nilai')->references('nilai')->on('pilihan');
             $table->timestamps();
         });
     }

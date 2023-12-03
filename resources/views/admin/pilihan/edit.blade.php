@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group col-md-6">
                             <label for="bobot_kriteria">Bobot</label>
-                            <input type="number" class="form-control" id="bobot_kriteria" placeholder="" name="bobot_kriteria" value="{{ $data_kriteria->bobot_kriteria }}">
+                            <input type="decimal" class="form-control" id="bobot_kriteria" placeholder="" name="bobot_kriteria" value="{{ $data_kriteria->bobot_kriteria }}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputState">Bobot</label>

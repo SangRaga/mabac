@@ -20,7 +20,8 @@
     <!-- Custom styles for this template-->
     <link href="{{ asset('sbadmin') }}/css/sb-admin-2.min.css" rel="stylesheet">
 
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    {{--
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css">
     <script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script defer src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
@@ -72,49 +73,50 @@
             </li>
 
             <!-- Nav Item - Tables -->
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a class="nav-link" href="{{ route('subkriteria.index') }}">
                     <i class="fas fa-fw fa-calendar"></i>
                     <span>Data Sub Kriteria</span></a>
-            </li>
+            </li> --}}
 
 
-             <!-- Nav Item - Charts -->
-             <li class="nav-item">
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('alternatif.index') }}">
                     <i class="fas fa-fw fa-fax"></i>
                     <span>Data Alternatif</span></a>
             </li>
 
-             <!-- Nav Item - Tables -->
-             <li class="nav-item">
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('matrix.index') }}">
                     <i class="fas fa-fw fa-calendar"></i>
                     <span>Matrix Penilaian</span></a>
             </li>
 
-            {{-- <!-- Nav Item - Tables -->
+            {{--
+            <!-- Nav Item - Tables -->
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-box"></i>
                     <span>Data Penilaian</span></a>
             </li> --}}
 
-             <!-- Nav Item - Charts -->
-             <li class="nav-item">
-                <a class="nav-link" href="{{ route('perhitungan.index') }}">
+            <!-- Nav Item - Charts -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('perhitungan') }}">
                     <i class="fas fa-fw fa-calculator"></i>
                     <span>Data Perhitungan</span></a>
             </li>
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('hasilakhir.index') }}">
+                <a class="nav-link" href="{{ route('hasilAkhir') }}">
                     <i class="fas fa-fw fa-paste"></i>
                     <span>Data Hasil Akhir</span></a>
             </li>
 
-            
+
 
             <!-- Divider -->
             <hr class="sidebar-divider">
@@ -145,7 +147,7 @@
                 </div>
             </li>
 
-           
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -212,8 +214,8 @@
                             </div>
                         </li>
 
-                    
-                        
+
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -221,7 +223,8 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name
+                                    }}</span>
                                 <img class="img-profile rounded-circle"
                                     src="{{ asset('sbadmin') }}/img/undraw_profile.svg">
                             </a>
@@ -233,15 +236,16 @@
                                     Profile
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal"
+                                    data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     {{ __('Logout') }}
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-one">
-                                    @csrf
+                                        @csrf
                                     </form>
-                                    
+
                                 </a>
-                                
+
                             </div>
                         </li>
 
@@ -254,7 +258,7 @@
                 <div class="container-fluid">
 
                     @yield('content')
-                  
+
                 </div>
                 <!-- /.container-fluid -->
 

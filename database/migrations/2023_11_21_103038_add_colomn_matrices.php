@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('produks', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('matrices', function (Blueprint $table) {
+            // $table->timestamp()->after;
+            // $table->unsignedBigInteger('nilai');
+            // $table->foreign('nilai')->references('nilai')->on('pilihan');
+            // $table->timestamps();
         });
     }
 
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('produks');
+        //
     }
 };

@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->string('kode_kriteria');
             $table->unique('kode_kriteria');
-			$table->string('nama_kriteria');
-			$table->integer('bobot_kriteria');
+            $table->string('nama_kriteria');
+            $table->decimal('bobot_kriteria', 11, 3);
             $table->string('jenis_kriteria');
+            $table->string('nilai')->nullable();
             $table->timestamps();
         });
     }
