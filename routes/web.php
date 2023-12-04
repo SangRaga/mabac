@@ -9,6 +9,7 @@ use App\Http\Controllers\PilihanController;
 use App\Http\Controllers\SubkriteriaController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Barryvdh\DomPDF\Facade as PDF;
 
 
 /*
@@ -26,14 +27,18 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('admin.dashboard');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
+Route::get('/jurnal', [App\Http\Controllers\HomeController::class, 'jurnal'])->name('jurnal');
 // Route::resource('kriteria', KriteriaController::class);
 Route::resource('pilihan', PilihanController::class);
 Route::resource('subkriteria', SubkriteriaController::class);
 Route::resource('matrix', MatrixController::class);
 Route::resource('alternatif', AlternatifController::class);
 Route::resource('perhitungan', PerhitunganController::class);
-Route::get('admin', [PerhitunganController::class, 'adminView'])->name('perhitungan');
-Route::get('admin/hasilAkhir', [PerhitunganController::class, 'adminHasil'])->name('hasilAkhir');
-Route::resource('hasilakhir', HasilakhirController::class);
+Route::get('hitung', [PerhitunganController::class, 'adminView'])->name('perhitungan');
+Route::get('hitung/hasilAkhir', [PerhitunganController::class, 'adminHasil'])->name('hasilAkhir');
+Route::get('hitung/view', [PerhitunganController::class, 'viewPDF'])->name('viewPDF');
+Route::get('hitung/download', [PerhitunganController::class, 'downloadPDF'])->name('downloadPDF');
+// Route::resource('hasilakhir', HasilakhirController::class);

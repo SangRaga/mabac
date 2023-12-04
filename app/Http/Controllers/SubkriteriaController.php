@@ -11,10 +11,12 @@ class SubkriteriaController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+
+    
     public function index()
-
     {
-
+        $sublist = subkriteria::all();
         // untuk tombol search
         $katakunci = request()->katakunci;
         $jumlah_baris = 5;
@@ -30,15 +32,18 @@ class SubkriteriaController extends Controller
         // untuk menampilkan nama kriteria
         $namakriteria = pilihan::all();
 
-        return view('admin.subkriteria.index', compact('data_subkriteria', 'namakriteria'));
+        return view('admin.subkriteria.index', compact('data_subkriteria', 'namakriteria', 'sublist'));
     }
+    
+    
 
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('admin.subkriteria.create');
+        $kriteriaList = pilihan::all();
+        return view('admin.subkriteria.create', compact('kriteriaList'));
     }
 
     /**
@@ -46,26 +51,28 @@ class SubkriteriaController extends Controller
      */
     public function store(Request $request)
     {
-        Session()->flash('nama_subkriteria', $request->nama_subkriteria);
-        Session()->flash('nilai_subkriteria', $request->nilai_subkriteria);
         $request->validate([
             'nama_subkriteria' => 'required',
-            'nilai_subkriteria' => 'required|numeric:subkriteria,nilai_subkriteria',
-
+            'nilai_subkriteria' => 'required|numeric',
+            'id_kriteria' => 'required|exists:pilihan,id', // Pastikan id_kriteria tersedia di tabel pilihan
         ], [
             'nama_subkriteria.required' => 'Nama wajib diisi',
             'nilai_subkriteria.required' => 'Nilai wajib diisi',
             'nilai_subkriteria.numeric' => 'Nilai wajib diisi dengan angka',
-
+            'id_kriteria.required' => 'Kode Kriteria wajib dipilih',
+            'id_kriteria.exists' => 'Kode Kriteria tidak valid',
         ]);
+
         $data_subkriteria = [
             'nama_subkriteria' => $request->nama_subkriteria,
             'nilai_subkriteria' => $request->nilai_subkriteria,
+            'id_kriteria' => $request->id_kriteria,
         ];
-        subkriteria::create($data_subkriteria);
+
+        Subkriteria::create($data_subkriteria);
+
         return redirect()->to('subkriteria')->with('success', 'Berhasil menambahkan data');
     }
-
     /**
      * Display the specified resource.
      */

@@ -116,7 +116,7 @@ class PerhitunganController extends Controller
                 'id' => $perhitunganG['id'],
                 'id_alternatif' => $perhitunganG['id_alternatif'],
                 'id_kriteria' => $perhitunganG['id_kriteria'],
-                'C' => number_format(pow($totalPerkalian, $panjang),4),
+                'C' => number_format(pow($totalPerkalian, $panjang), 4),
                 'created_at' => $perhitunganG['created_at'],
                 'updated_at' => $perhitunganG['updated_at'],
             ];
@@ -127,6 +127,7 @@ class PerhitunganController extends Controller
         // foreach ($matrixsV as $keyV => $valueV) {
         //     $outputV[$keyV] = $valueV['C'];
         // }
+        // dd($outputV);
 
 
         $matrixsQ = [];
@@ -138,7 +139,7 @@ class PerhitunganController extends Controller
                 'id' => $perhitunganQ['id'],
                 'id_alternatif' => $perhitunganQ['id_alternatif'],
                 'id_kriteria' => $perhitunganQ['id_kriteria'],
-                'C' => number_format(($perhitunganQ['C'] - $nilaiG),4),
+                'C' => number_format(($perhitunganQ['C'] - $nilaiG), 4),
                 'created_at' => $perhitunganQ['created_at'],
                 'updated_at' => $perhitunganQ['updated_at'],
             ];
@@ -160,7 +161,7 @@ class PerhitunganController extends Controller
         $matrixsTambah = [];
         foreach ($matrixsQ as $perhitunganTambah) {
             $idAlternatif = $perhitunganTambah['id_alternatif'];
-            
+
             $sumAlternatif = sumByIdAlternatif($matrixsQ, $idAlternatif);
             // dd($sumAlternatif);
 
@@ -169,19 +170,17 @@ class PerhitunganController extends Controller
                 'id' => $perhitunganTambah['id'],
                 'id_alternatif' => $perhitunganTambah['id_alternatif'],
                 'id_kriteria' => $perhitunganTambah['id_kriteria'],
-                'C' => number_format(($perhitunganTambah['C'] = $sumAlternatif),3),
+                'C' => number_format(($perhitunganTambah['C'] = $sumAlternatif), 3),
                 'created_at' => $perhitunganTambah['created_at'],
                 'updated_at' => $perhitunganTambah['updated_at'],
             ];
-
-            
         }
-        usort($matrixsTambah, function($a, $b) {
+        usort($matrixsTambah, function ($a, $b) {
             // Mengurutkan berdasarkan nilai 'C' secara descending
             return $b['C'] - $a['C'];
         });
         // dd($matrixsTambah);
-        
+
         // $matrixsTambah = [];
         // foreach ($matrixsQ as $perhitunganTambah) {
         //     $idAlternatif = $perhitunganTambah['id_alternatif'];
@@ -197,7 +196,7 @@ class PerhitunganController extends Controller
         //     ];
         // }
         // dd($matrixsTambah);
-       
+
 
 
 
@@ -211,7 +210,6 @@ class PerhitunganController extends Controller
 
         // return view('admin.hasilakhir.index');`
         return compact('kriterialist', 'alternatiflist', 'matrixlist', 'maxMin', 'normalisasi', 'matrixsV', 'matrixsG', 'matrixsQ', 'matrixsTambah');
-
     }
     public function adminView()
     {
@@ -225,7 +223,7 @@ class PerhitunganController extends Controller
         $matrixsG = $data['matrixsG'];
         $matrixsQ = $data['matrixsQ'];
         $matrixsTambah = $data['matrixsTambah'];
-      
+
         return view('admin.perhitungan.index', compact('kriterialist', 'alternatiflist', 'matrixlist', 'maxMin', 'normalisasi', 'matrixsV', 'matrixsG', 'matrixsQ', 'matrixsTambah'));
     }
     public function adminHasil()
@@ -235,9 +233,27 @@ class PerhitunganController extends Controller
         $kriterialist = $data['kriterialist'];
         $matrixsTambah = $data['matrixsTambah'];
 
-      
         return view('admin.hasilakhir.index', compact('matrixsTambah', 'alternatiflist', 'kriterialist'));
     }
 
-
+    public function viewPDF()
+    {
+        $mpdf = new \Mpdf\Mpdf();
+        $data = $this->index();
+        $alternatiflist = $data['alternatiflist'];
+        $kriterialist = $data['kriterialist'];
+        $matrixsTambah = $data['matrixsTambah'];
+        $mpdf->WriteHTML(view('admin.viewpdf', compact('matrixsTambah', 'alternatiflist', 'kriterialist')));
+        $mpdf->Output();
+    }
+    public function downloadPDF()
+    {
+        $mpdf = new \Mpdf\Mpdf();
+        $data = $this->index();
+        $alternatiflist = $data['alternatiflist'];
+        $kriterialist = $data['kriterialist'];
+        $matrixsTambah = $data['matrixsTambah'];
+        $mpdf->WriteHTML(view('admin.viewpdf', compact('matrixsTambah', 'alternatiflist', 'kriterialist')));
+        $mpdf->Output('Hasil-Perangkingan.pdf','D');
+    }
 }

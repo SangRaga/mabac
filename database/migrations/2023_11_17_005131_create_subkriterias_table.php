@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('subkriteria', function (Blueprint $table) {
             $table->id();
+            $table->foreignID('id_kriteria')->references('id')->on('pilihan');
             $table->string('nama_subkriteria');
             $table->integer('nilai_subkriteria');
             $table->timestamps();

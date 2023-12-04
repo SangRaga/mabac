@@ -28,14 +28,40 @@
                                 {{ $data_alternatif->kode_alternatif }}
                             </div>
                         </div>
-                        @foreach ($data_kriteria as $item)
+                        {{-- @foreach ($data_kriteria as $item)
                         <div class="form-group col-md-6">
                             <label for="id_alternatif_{{ $data_alternatif->kode_alternatif }}">{{ $item->kode_kriteria }}</label>
                             <label for="isi_kodekriteria_{{ $item->id }}"></label>
                             <input type="number" class="form-control" step="any" name="matrix_values[{{ $item->id }}]" value="" />
                             <input type="hidden" name="id_kriteria_{{ $item->id }}" value={{ $item->id }}>
                         </div>
+                        @endforeach --}}
+
+                        @foreach ($data_kriteria as $item)
+                        <div class="form-group col-md-6">
+                            <label for="id_alternatif_{{ $data_alternatif->kode_alternatif }}">{{ $item->kode_kriteria }}</label>
+                            <label for="isi_kodekriteria_{{ $item->id }}"></label>
+                            {{-- <input type="number" class="form-control" step="any" name="matrix_values[{{ $item->id }}]" value="" /> --}}
+                            <select class="form-control" name="matrix_values[{{ $item->id }}]">
+                                <option value="" selected disabled>Pilih Nilai</option>
+                                @foreach ($subValues -> where('id_kriteria',$item->id) as $itemsub)
+                                <option value="{{ $itemsub->nilai_subkriteria }}">{{ $itemsub->nama_subkriteria }}</option>
+                                @endforeach
+                            </select>
+                            <input type="hidden" name="id_kriteria_{{ $item->id }}" value={{ $item->id }}>
+                        </div>
                         @endforeach
+                        {{-- ($sublist -> where('id_kriteria',$kriteria->id) as $subkriteria) --}}
+
+
+                        {{-- <select id="inputState" class="form-control" name="id_kriteria">
+                            @foreach ($kriteriaList->unique('id') as $item)
+                            <option>{{ $item->id }}</option>
+                            @endforeach
+                        </select> --}}
+
+
+
                         
 
                         {{-- Tampilkan input untuk setiap kriteria --}}

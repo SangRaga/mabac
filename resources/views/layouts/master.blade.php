@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Dashboard</title>
+    <title>SPK ~ MABAC</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('sbadmin') }}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -43,7 +43,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-warehouse"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">SPK MABAC</div>
+                <div class="sidebar-brand-text mx-3">SPK ~ MABAC</div>
             </a>
 
             <!-- Divider -->
@@ -67,18 +67,10 @@
             <!-- Nav Item - Pages Collapse Menu -->
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('pilihan.index') }}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Data Kriteria</span></a>
+                <a class="nav-link" href="/jurnal">
+                    <i class="fas fa-fw fa-book"></i>
+                    <span>Refrensi Jurnal</span></a>
             </li>
-
-            <!-- Nav Item - Tables -->
-            {{-- <li class="nav-item">
-                <a class="nav-link" href="{{ route('subkriteria.index') }}">
-                    <i class="fas fa-fw fa-calendar"></i>
-                    <span>Data Sub Kriteria</span></a>
-            </li> --}}
-
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
@@ -86,6 +78,20 @@
                     <i class="fas fa-fw fa-fax"></i>
                     <span>Data Alternatif</span></a>
             </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('pilihan.index') }}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>Data Kriteria</span></a>
+            </li>
+
+            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('subkriteria.index') }}">
+                    <i class="fas fa-fw fa-calendar"></i>
+                    <span>Data Sub Kriteria</span></a>
+            </li>
+
 
             <!-- Nav Item - Tables -->
             <li class="nav-item">
@@ -121,12 +127,12 @@
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
+            {{-- <!-- Heading -->
             <div class="sidebar-heading">
                 Master User
             </div>
 
-            <!-- Nav Item - Pages Collapse Menu -->
+            {{-- <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                     aria-expanded="true" aria-controls="collapsePages">
@@ -145,11 +151,11 @@
                         <a class="collapse-item" href="blank.html">Blank Page</a>
                     </div>
                 </div>
-            </li>
+            </li> --}}
 
 
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            {{-- <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block"> --}}
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">

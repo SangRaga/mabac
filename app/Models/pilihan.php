@@ -30,5 +30,8 @@ class pilihan extends Model
     public function matrix(){
         return $this->hasMany(matrix::class, 'id_kriteria', 'id');
     }
+    public function subkriteria(){
+        return $this->hasMany(subkriteria::class, 'id_kriteria', 'id');
+    }
    
 }

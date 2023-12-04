@@ -29,4 +29,8 @@ class matrix extends Model
     {
         return $this->belongsTo(pilihan::class, 'id_kriteria', 'id');
     }
+    public function subkriteria()
+    {
+        return $this->belongsTo(subkriteria::class, 'id_kriteria', 'id_kriteria');
+    }
 }

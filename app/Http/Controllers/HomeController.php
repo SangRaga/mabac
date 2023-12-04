@@ -25,4 +25,8 @@ class HomeController extends Controller
     {
         return view('admin.dashboard');
     }
+    public function jurnal()
+    {
+        return view('admin.jurnal');
+    }
 }

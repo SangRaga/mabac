@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\alternatif;
 use App\Models\matrix;
 use App\Models\pilihan;
+use App\Models\subkriteria;
 use Illuminate\Http\Request;
 
 class MatrixController extends Controller
@@ -83,37 +84,41 @@ class MatrixController extends Controller
         $data_kriteria = pilihan::all();
         $data_matrix = matrix::all();
         $data_alternatif = alternatif::where('id', $id)->first();
+        $subValues = subkriteria::get();
+        // dd($subValues);
         return view('admin.matrix.tambah')
             ->with('data_alternatif', $data_alternatif)
-            ->with(compact('data_kriteria', 'data_matrix'));
+            ->with(compact('data_kriteria', 'data_matrix', 'subValues'));
     }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, $id_alternatif)
-{
-    $matrixValues = $request->input('matrix_values');
-    $kriteriaItems = pilihan::get();
+    {
+       
+        $matrixValues = $request->input('matrix_values');
+        $kriteriaItems = pilihan::get();
+        
 
-    foreach ($kriteriaItems as $kriteriaItem) {
-        $request->validate([
-            "matrix_values.{$kriteriaItem->id}" => 'required',
-        ], [
-            "matrix_values.{$kriteriaItem->id}.required" => 'Nilai Kriteria wajib diisi',
-        ]);
+        foreach ($kriteriaItems as $kriteriaItem) {
+            $request->validate([
+                "matrix_values.{$kriteriaItem->id}" => 'required',
+            ], [
+                "matrix_values.{$kriteriaItem->id}.required" => 'Nilai Kriteria wajib diisi',
+            ]);
 
-        // Ambil nilai untuk kriteria saat ini
-        $kriteriaValue = $matrixValues[$kriteriaItem->id];
+            // Ambil nilai untuk kriteria saat ini
+            $kriteriaValue = $matrixValues[$kriteriaItem->id];
 
-        matrix::updateOrCreate(
-            ['id_alternatif' => $id_alternatif, 'id_kriteria' => $kriteriaItem->id],
-            ['C' => $kriteriaValue]
-        );
+            matrix::updateOrCreate(
+                ['id_alternatif' => $id_alternatif, 'id_kriteria' => $kriteriaItem->id],
+                ['C' => $kriteriaValue]
+            );
+        }
+
+        return redirect()->route('matrix.index')->with('success', 'Berhasil Menambah Nilai Matrix!');
     }
-
-    return redirect()->route('matrix.index')->with('success', 'Berhasil Menambah Nilai Matrix!');
-}
 
     /**
      * Remove the specified resource from storage.
