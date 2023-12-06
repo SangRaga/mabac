@@ -68,7 +68,10 @@ class PerhitunganController extends Controller
                     'id' => $matrixItem['id'],
                     'id_alternatif' => $matrixItem['id_alternatif'],
                     'id_kriteria' => $matrixItem['id_kriteria'],
-                    'C' => number_format(($matrixItem['C'] - $minValue) / ($maxValue - $minValue), 4),
+                    // 'C' => number_format(($matrixItem['C'] - $minValue) / ($maxValue - $minValue), 4),
+                    'C' => $matrixItem['C'] !== null && $maxValue !== $minValue
+                        ? number_format(($matrixItem['C'] - $minValue) / ($maxValue - $minValue), 4)
+                        : null,
                     'created_at' => $matrixItem['created_at'],
                     'updated_at' => $matrixItem['updated_at'],
                 ];
@@ -254,6 +257,6 @@ class PerhitunganController extends Controller
         $kriterialist = $data['kriterialist'];
         $matrixsTambah = $data['matrixsTambah'];
         $mpdf->WriteHTML(view('admin.viewpdf', compact('matrixsTambah', 'alternatiflist', 'kriterialist')));
-        $mpdf->Output('Hasil-Perangkingan.pdf','D');
+        $mpdf->Output('Hasil-Perangkingan.pdf', 'D');
     }
 }

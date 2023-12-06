@@ -34,8 +34,8 @@
                         <div class="form-group col-md-6">
                             <label for="inputState">Kode Kriteria (C)</label>
                             <select id="inputState" class="form-control" name="id_kriteria">
-                                @foreach ($kriteriaList->unique('id') as $item)
-                                <option>{{ $item->id }}</option>
+                                @foreach ($kriteriaList->unique('id') as $foo => $item)
+                                <option value="{{ $item->id }}"> C{{ $foo + 1 }}</option>
                                 @endforeach
                             </select>
                         </div>

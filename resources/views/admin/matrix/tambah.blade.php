@@ -14,7 +14,7 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3 d-flex justify-content-between">
-            <h6 class="m-0 font-weight-bold text-primary">{{ $data_alternatif->kode_alternatif }}</h6>
+            <h6 class="m-0 font-weight-bold text-primary"> {{ $data_alternatif->nama_alternatif }} ({{ $data_alternatif->kode_alternatif }}) </h6>
         </div>
         <div class="card-body">
             <div class="">
@@ -23,7 +23,7 @@
                     @method('put')
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="kode_alternatif">Kode Alternatif</label>
+                            <label for="kode_alternatif">Kode Alternatif </label>
                             <div class="col-sm-10">
                                 {{ $data_alternatif->kode_alternatif }}
                             </div>

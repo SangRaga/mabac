@@ -96,16 +96,16 @@ class MatrixController extends Controller
      */
     public function update(Request $request, $id_alternatif)
     {
-       
+
         $matrixValues = $request->input('matrix_values');
         $kriteriaItems = pilihan::get();
-        
+
 
         foreach ($kriteriaItems as $kriteriaItem) {
             $request->validate([
                 "matrix_values.{$kriteriaItem->id}" => 'required',
             ], [
-                "matrix_values.{$kriteriaItem->id}.required" => 'Nilai Kriteria wajib diisi',
+                "matrix_values.{$kriteriaItem->id}.required" => 'Nilai SubKriteria wajib diisi',
             ]);
 
             // Ambil nilai untuk kriteria saat ini

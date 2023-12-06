@@ -1,5 +1,12 @@
 @extends('layouts.master')
 @section('content')
+@if(Session::has('success'))
+    <div class="pt-3">
+        <div class="alert alert-success">
+            {{ Session::get('success') }}
+        </div>
+    </div>
+@endif
 <div class="container-fluid">
 
     <!-- Page Heading -->
@@ -59,12 +66,17 @@
                             <td>{{ $subkriteria->nama_subkriteria }}</td>
                             <td>{{ $subkriteria->nilai_subkriteria }}</td>
                             <td class="text-center d-flex justify-content-center align-items-center">
-                                <a href="{{ url('alternatif/'.$subkriteria->no.'/edit') }}"
+                                <a href="{{ url('subkriteria/'.$subkriteria->id.'/edit') }}"
                                     class="btn btn-warning btn-circle btn-sm">
                                     <i class="fas fa-pen"></i>
                                 </a>
+                                {{-- <a href="{{ url('subkriteria/'.$subkriteria->id_kriteria.'/edit') }}"
+                                    class="btn btn-warning btn-circle btn-sm">
+                                    <i class="fas fa-pen"></i>
+                                </a> --}}
+                               
                                 <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data?')"
-                                    action="{{ url('alternatif/'.$subkriteria->no) }}" method="post">
+                                    action="{{ url('subkriteria/'.$subkriteria->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" name="submit" class="btn btn-danger btn-circle btn-sm ml-2">

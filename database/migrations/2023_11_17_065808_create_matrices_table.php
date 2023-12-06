@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('matrices', function (Blueprint $table) {
             $table->id();
-            $table->foreignID('id_alternatif')->references('id')->on('alternatif');
-            $table->foreignID('id_kriteria')->references('id')->on('pilihan');
+            $table->foreignID('id_alternatif')->references('id')->on('alternatif')->onDelete('cascade');
+            $table->foreignID('id_kriteria')->references('id')->on('pilihan')->onDelete('cascade');
             $table->decimal('C');
             // $table->timestamp();
             // $table->unsignedBigInteger('nilai');

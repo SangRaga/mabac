@@ -13,7 +13,7 @@ class SubkriteriaController extends Controller
      */
 
 
-    
+
     public function index()
     {
         $sublist = subkriteria::all();
@@ -34,8 +34,8 @@ class SubkriteriaController extends Controller
 
         return view('admin.subkriteria.index', compact('data_subkriteria', 'namakriteria', 'sublist'));
     }
-    
-    
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -51,6 +51,9 @@ class SubkriteriaController extends Controller
      */
     public function store(Request $request)
     {
+        Session()->flash('nama_subkriteria', $request->nama_subkriteria);
+        Session()->flash('nilai_subkriteria', $request->nilai_subkriteria);
+        Session()->flash('id_kriteria', $request->id_kriteria);
         $request->validate([
             'nama_subkriteria' => 'required',
             'nilai_subkriteria' => 'required|numeric',
@@ -87,7 +90,8 @@ class SubkriteriaController extends Controller
     public function edit(string $id)
     {
         $data_subkriteria = subkriteria::where('id', $id)->first();
-        return view('admin.subkriteria.edit')->with('data_kriteria', $data_subkriteria);
+        // dd($data_subkriteria);
+        return view('admin.subkriteria.edit')->with('data_subkriteria', $data_subkriteria);
     }
 
     /**
@@ -95,7 +99,21 @@ class SubkriteriaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama_subkriteria' => 'required',
+            'nilai_subkriteria' => 'required',
+
+        ], [
+            'nama_subkriteria.required' => 'Nama Subkriteria wajib diisi',
+            'nilai_subkriteria.required' => 'Nilai Subkriteria wajib diisi',
+
+        ]);
+        $data_subkriteria = [
+            'nama_subkriteria' => $request->nama_subkriteria,
+            'nilai_subkriteria' => $request->nilai_subkriteria,
+        ];
+        subkriteria::where('id', $id)->update($data_subkriteria);
+        return redirect()->to('subkriteria')->with('success', 'Berhasil mengubah data');
     }
 
     /**
@@ -103,6 +121,7 @@ class SubkriteriaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        subkriteria::where('id', $id)->delete();
+        return redirect()->to('subkriteria')->with('success', 'Berhasih menghapus data');
     }
 }

@@ -59,13 +59,13 @@
                                     <i class="fas fa-plus"></i>
                                 </a>
 
-                                <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data?')" action="{{ url('matrix/'.$item1->id_alternatif) }}" method="post">
+                                {{-- <form onsubmit="return confirm('Apakah anda yakin ingin menghapus data?')" action="{{ url('matrix/'.$item1->id_alternatif) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" name="submit" class="btn btn-danger btn-circle btn-sm ml-2">
                                         <i class="fas fa-trash"></i>
                                     </button>
-                                </form>
+                                </form> --}}
 
                                 
                             </td>
